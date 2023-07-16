@@ -16,7 +16,10 @@ class RouteController
         $routesCollection = Route::getRoutes();
 
         foreach ($routesCollection as $route) {
-            $routes[$route->getName()] = $route->uri();
+            $routes[$route->getName()] = [
+                'url' => $route->uri(),
+                'methods' => $route->methods()
+            ];
         }
 
         if ($request->has('only')) {
